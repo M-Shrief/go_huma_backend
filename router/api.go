@@ -5,16 +5,18 @@ import (
 
 	"github.com/danielgtaylor/huma/v2"
 	"github.com/danielgtaylor/huma/v2/adapters/humachi"
-	"github.com/go-chi/chi/v5"
 )
 
 var API huma.API
 
-func InitAPI(router *chi.Mux, config huma.Config) huma.API {
-	API = humachi.New(router, config)
+func InitAPI() huma.API {
+	API = humachi.New(R, huma.DefaultConfig("My API", "0.0.1"))
+
+	registerAPIs()
+
 	return API
 }
 
-func RegisterAPIs() {
+func registerAPIs() {
 	greeting.RegisterAPI(API)
 }
