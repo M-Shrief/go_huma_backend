@@ -3,13 +3,11 @@ package main
 import (
 	"context"
 	"fmt"
+	"go_huma_backend/router"
 	"net/http"
 
 	"github.com/danielgtaylor/huma/v2"
-	"github.com/danielgtaylor/huma/v2/adapters/humachi"
 	_ "github.com/danielgtaylor/huma/v2/formats/cbor"
-	"github.com/go-chi/chi/v5"
-	"github.com/go-chi/chi/v5/middleware"
 )
 
 // GreetingOutput represents the greeting operation response.
@@ -20,10 +18,9 @@ type GreetingOutput struct {
 }
 
 func main() {
-	// Create a new router & API
-	router := chi.NewMux()
-	router.Use(middleware.Logger)
-	api := humachi.New(router, huma.DefaultConfig("My API", "1.0.0"))
+	r := router.NewRouter()
+	router.UseMiddlewares()
+	api := router.InitAPI(r, huma.DefaultConfig("My API", "1.0.0"))
 
 	// // Register GET /greeting/{name} handler.
 	// huma.Get(
@@ -66,5 +63,5 @@ func main() {
 	)
 
 	// Start the server!
-	http.ListenAndServe("127.0.0.1:3000", router)
+	http.ListenAndServe("127.0.0.1:3000", r)
 }
