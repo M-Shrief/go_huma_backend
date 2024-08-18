@@ -1,11 +1,15 @@
 package main
 
 import (
+	"fmt"
+	"go_huma_backend/internal/config"
 	"go_huma_backend/router"
 	"net/http"
 )
 
 func main() {
+	// Load Config Variables
+	config.LoadENV()
 
 	// Router & API
 	r := router.NewRouter()
@@ -13,5 +17,6 @@ func main() {
 	router.InitAPI()
 
 	// Start the server!
-	http.ListenAndServe("127.0.0.1:3000", r)
+	serveStr := fmt.Sprintf("%v:%v", config.HOST, config.PORT)
+	http.ListenAndServe(serveStr, r)
 }
