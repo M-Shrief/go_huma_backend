@@ -2,6 +2,7 @@ package router
 
 import (
 	"go_huma_backend/internal/components/greeting"
+	"go_huma_backend/internal/components/reviews"
 
 	"github.com/danielgtaylor/huma/v2"
 	"github.com/danielgtaylor/huma/v2/adapters/humachi"
@@ -20,4 +21,5 @@ func InitAPI() huma.API {
 
 func registerAPIs() {
 	greeting.RegisterAPI(API)
+	reviews.RegisterAPI(API)
 }
