@@ -1,0 +1,16 @@
+node_modules
+
+dist
+
+coverage
+
+.env
+
+*.log
+
+# Certificates
+*.pem
+*.crt
+
+# Kreya
+**/Kreya
