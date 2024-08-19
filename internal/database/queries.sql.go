@@ -16,9 +16,9 @@ INSERT INTO users (name,password, roles) VALUES ($1, $2, $3) RETURNING id, name,
 `
 
 type CreateUserParams struct {
-	Name     string  `json:"name"`
-	Password string  `json:"password"`
-	Roles    []Roles `json:"roles"`
+	Name     string `json:"name"`
+	Password string `json:"password"`
+	Roles    []Role `json:"roles"`
 }
 
 func (q *Queries) CreateUser(ctx context.Context, arg CreateUserParams) (User, error) {
@@ -53,10 +53,10 @@ type GetUserByNameRow struct {
 	ID       pgtype.UUID `json:"id"`
 	Name     string      `json:"name"`
 	Password string      `json:"password"`
-	Roles    []Roles     `json:"roles"`
+	Roles    []Role      `json:"roles"`
 }
 
-// like INSERT INTO users (name, password, roles) VALUES ('nameasf', 'sfaasffas', ARRAY['DBA']::roles[]) RETURNING *;
+// like INSERT INTO users (name, password, roles) VALUES ('nameasf', 'sfaasffas', ARRAY['DBA']::role[]) RETURNING *;
 func (q *Queries) GetUserByName(ctx context.Context, name string) (GetUserByNameRow, error) {
 	row := q.db.QueryRow(ctx, getUserByName, name)
 	var i GetUserByNameRow
@@ -70,12 +70,12 @@ func (q *Queries) GetUserByName(ctx context.Context, name string) (GetUserByName
 }
 
 const updateRole = `-- name: UpdateRole :one
-UPDATE users set roles =  (select array_agg(distinct e) from unnest(array_append(users.roles, $2::roles)) e) WHERE id = $1 RETURNING id, name, password, roles, created_at, update_at
+UPDATE users set roles =  (select array_agg(distinct e) from unnest(array_append(users.roles, $2::role)) e) WHERE id = $1 RETURNING id, name, password, roles, created_at, update_at
 `
 
 type UpdateRoleParams struct {
 	ID      pgtype.UUID `json:"id"`
-	Column2 Roles       `json:"column_2"`
+	Column2 Role        `json:"column_2"`
 }
 
 func (q *Queries) UpdateRole(ctx context.Context, arg UpdateRoleParams) (User, error) {
@@ -96,7 +96,7 @@ const updateUser = `-- name: UpdateUser :exec
 UPDATE users SET
   name = COALESCE(NULLIF($2::varchar, ''), name),
   password = COALESCE(NULLIF($3::varchar, ''), password),
-  roles = COALESCE(NULLIF($4::roles[], ARRAY[]::roles[]), roles),
+  roles = COALESCE(NULLIF($4::role[], ARRAY[]::role[]), roles),
   update_at = CURRENT_TIMESTAMP
 WHERE id = $1
 `
@@ -105,7 +105,7 @@ type UpdateUserParams struct {
 	ID      pgtype.UUID `json:"id"`
 	Column2 string      `json:"column_2"`
 	Column3 string      `json:"column_3"`
-	Column4 []Roles     `json:"column_4"`
+	Column4 []Role      `json:"column_4"`
 }
 
 func (q *Queries) UpdateUser(ctx context.Context, arg UpdateUserParams) error {

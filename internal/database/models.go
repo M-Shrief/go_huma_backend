@@ -11,54 +11,54 @@ import (
 	"github.com/jackc/pgx/v5/pgtype"
 )
 
-type Roles string
+type Role string
 
 const (
-	RolesManagement Roles = "Management"
-	RolesDBA        Roles = "DBA"
-	RolesAnalytics  Roles = "Analytics"
+	RoleManagement Role = "Management"
+	RoleDBA        Role = "DBA"
+	RoleAnalytics  Role = "Analytics"
 )
 
-func (e *Roles) Scan(src interface{}) error {
+func (e *Role) Scan(src interface{}) error {
 	switch s := src.(type) {
 	case []byte:
-		*e = Roles(s)
+		*e = Role(s)
 	case string:
-		*e = Roles(s)
+		*e = Role(s)
 	default:
-		return fmt.Errorf("unsupported scan type for Roles: %T", src)
+		return fmt.Errorf("unsupported scan type for Role: %T", src)
 	}
 	return nil
 }
 
-type NullRoles struct {
-	Roles Roles `json:"roles"`
-	Valid bool  `json:"valid"` // Valid is true if Roles is not NULL
+type NullRole struct {
+	Role  Role `json:"role"`
+	Valid bool `json:"valid"` // Valid is true if Role is not NULL
 }
 
 // Scan implements the Scanner interface.
-func (ns *NullRoles) Scan(value interface{}) error {
+func (ns *NullRole) Scan(value interface{}) error {
 	if value == nil {
-		ns.Roles, ns.Valid = "", false
+		ns.Role, ns.Valid = "", false
 		return nil
 	}
 	ns.Valid = true
-	return ns.Roles.Scan(value)
+	return ns.Role.Scan(value)
 }
 
 // Value implements the driver Valuer interface.
-func (ns NullRoles) Value() (driver.Value, error) {
+func (ns NullRole) Value() (driver.Value, error) {
 	if !ns.Valid {
 		return nil, nil
 	}
-	return string(ns.Roles), nil
+	return string(ns.Role), nil
 }
 
 type User struct {
 	ID        pgtype.UUID      `json:"id"`
 	Name      string           `json:"name"`
 	Password  string           `json:"password"`
-	Roles     []Roles          `json:"roles"`
+	Roles     []Role           `json:"roles"`
 	CreatedAt pgtype.Timestamp `json:"created_at"`
 	UpdateAt  pgtype.Timestamp `json:"update_at"`
 }
