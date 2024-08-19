@@ -24,8 +24,24 @@ var (
 	PORT string
 )
 
+// Database
+var (
+	DB_HOST     string
+	DB_PORT     string
+	DB_NAME     string
+	DB_USER     string
+	DB_PASSWORD string
+)
+
 func assignValues() {
 	// General
 	HOST = envs["HOST"]
 	PORT = envs["PORT"]
+
+	// Database
+	DB_HOST = envs["DB_HOST"]
+	DB_PORT = envs["DB_PORT"]
+	DB_USER = envs["DB_USER"]
+	DB_NAME = envs["DB_NAME"]
+	DB_PASSWORD = envs["DB_PASSWORD"]
 }
