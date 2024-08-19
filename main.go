@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"go_huma_backend/internal/config"
 	"go_huma_backend/internal/database"
@@ -13,7 +14,8 @@ func main() {
 	config.LoadENV()
 
 	// Database
-	database.Connect()
+	conn, _ := database.Connect()
+	defer conn.Close(context.Background())
 
 	// Router & API
 	r := router.NewRouter()
