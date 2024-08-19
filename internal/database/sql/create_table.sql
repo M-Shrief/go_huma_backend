@@ -1,10 +1,10 @@
-CREATE TYPE roles AS ENUM ('Management','DBA', 'Analytics');
+CREATE TYPE role AS ENUM ('Management','DBA', 'Analytics');
 
 CREATE TABLE IF NOT EXISTS users (
     id UUID NOT NULL DEFAULT gen_random_uuid(),
     name VARCHAR(50) UNIQUE NOT NULL,
     password VARCHAR(100) NOT NULL,
-    roles roles[] NOT NULL,
+    roles role[] NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     update_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
 
