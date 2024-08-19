@@ -17,6 +17,8 @@ func main() {
 	router.InitAPI()
 
 	// Start the server!
-	serveStr := fmt.Sprintf("%v:%v", config.HOST, config.PORT)
-	http.ListenAndServe(serveStr, r)
+	http.ListenAndServe(
+		fmt.Sprintf("%v:%v", config.HOST, config.PORT),
+		r,
+	)
 }
