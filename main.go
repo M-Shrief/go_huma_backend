@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"go_huma_backend/internal/config"
+	"go_huma_backend/internal/database"
 	"go_huma_backend/router"
 	"net/http"
 )
@@ -10,6 +11,9 @@ import (
 func main() {
 	// Load Config Variables
 	config.LoadENV()
+
+	// Database
+	database.Connect()
 
 	// Router & API
 	r := router.NewRouter()
