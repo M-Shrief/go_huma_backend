@@ -29,9 +29,9 @@ func Connect() (*pgx.Conn, error) {
 	// }
 
 	dataTypeNames := []string{
-		"roles",
+		"role",
 		// An underscore prefix is an array type in pgtypes.
-		"_roles",
+		"_role",
 	}
 
 	for _, typeName := range dataTypeNames {
