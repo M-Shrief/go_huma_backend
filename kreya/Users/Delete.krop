@@ -1,0 +1,21 @@
+{
+  "details": {
+    "path": "/users/me",
+    "method": "DELETE",
+    "headers": [
+      {
+        "key": "Authorization",
+        "value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjQxODcyMjYsImlhdCI6MTcyNDE4MzYyNiwicGVybWlzc2lvbnMiOlsiREJBOnJlYWQiLCJEQkE6d3JpdGUiXSwidXNlciI6eyJpZCI6IjJjMDBkZWYzLWY3N2QtNGUwYi1iMTAyLWM4NjM4YjJkYzJlNyIsIm5hbWUiOiJOYW1lX05ldyIsInJvbGVzIjpbIkRCQSJdfX0.SWe5EX-_hnAFOuFYkKgxEDlFs-SZS5bDYURoeE_eHD3x7o1EEW7O5D1yung9OSWZys0JIi8Q2ESavkyCGDaz1u5D1vOn5j_kX1CSAvsAyEHh8UxLiVd4WA8ZAlxdC5wVOTxLMXtuBe2Vq9yOfly0hRFa_EOkJEc7y4PplHc_13EKhulkEPOQ7ECr4bWUCtRzZzqliws56gl4wz1og7U7gOXgSS2Mc1GkknZMr0RcVvgsEt6YBe_K4ja_Y7FmOSk9WbcreBTAFT1ZNCFmhxanHa2KBlYoNDOGpoSPcLEV210vXcpADUj_7zpaPpwvmGN9sTAC0ePhbIfqLXdYVhA0RQ"
+      }
+    ],
+    "pathParams": []
+  },
+  "requests": [
+    {
+      "contentType": "none"
+    }
+  ],
+  "operationType": "unary",
+  "invokerName": "rest",
+  "typeHint": "DELETE"
+}

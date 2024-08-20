@@ -1,0 +1,26 @@
+{
+  "details": {
+    "path": "/users/me",
+    "method": "PUT",
+    "headers": [
+      {
+        "key": "Content-Type",
+        "value": "application/json"
+      },
+      {
+        "key": "Authorization",
+        "value": "Bearer eyJbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjQxODY5MDUsImlhdCI6MTcyNDE4MzMwNSwicGVybWlzc2lvbnMiOlsiREJBOnJlYWQiLCJEQkE6d3JpdGUiXSwidXNlciI6eyJpZCI6IjJjMDBkZWYzLWY3N2QtNGUwYi1iMTAyLWM4NjM4YjJkYzJlNyIsIm5hbWUiOiJOYW1lXzEiLCJyb2xlcyI6WyJEQkEiXX19.V2-1H363Fz8MRPGSIj0iXPEApw6HU7TVVjmbGlyKQ8VZJ13MNDpAOMgaFOvxdc7onCEpEcisk_HT2NZdspZWbM6V1MXH0rKTrCE163ox5b9GKqz5jM38MOpRSh9ADTfjMDNPxvVXj1676bjy7rZfjBDm4BLD6dbKb8_t2tgopR6QXUi3TGhdEc8M04CENA6Oslxac_mD-Puw1QRM5N_iZmTKFfWBz4UkiAurV8RRznnWi9h9jquNhvYURO9fZNW-C2ZEJkg0YNC1RulkMRnwdNPn2OLJ_RVXFCgAMFCFXOWGgYemY05IjPgRQ0Sb0e2fHmdNMS8u_RHVaYypZfuYig"
+      }
+    ],
+    "pathParams": []
+  },
+  "requests": [
+    {
+      "location": "Update-request.json",
+      "contentType": "json"
+    }
+  ],
+  "operationType": "unary",
+  "invokerName": "rest",
+  "typeHint": "PUT"
+}

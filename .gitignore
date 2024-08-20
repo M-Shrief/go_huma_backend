@@ -11,6 +11,3 @@ coverage
 # Certificates
 *.pem
 *.crt
-
-# Kreya
-**/Kreya
