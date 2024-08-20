@@ -32,4 +32,20 @@ func RegisterAPI(api huma.API) {
 		},
 		LoginHandler,
 	)
+
+	huma.Register(
+		api,
+		huma.Operation{
+			OperationID: "update-users",
+			Method:      http.MethodPut,
+			Path:        "/users/me",
+			Summary:     "Updated User",
+			Description: "Update user's data.",
+			Tags:        []string{"Users"},
+			Security: []map[string][]string{
+				{"JWT-Auth": {"JWT authentication"}},
+			},
+		},
+		UpdateHandler,
+	)
 }
