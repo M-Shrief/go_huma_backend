@@ -14,8 +14,5 @@ UPDATE users SET
   update_at = CURRENT_TIMESTAMP
 WHERE id = $1;
 
--- name: UpdateRole :one
-UPDATE users set roles =  (select array_agg(distinct e) from unnest(array_append(users.roles, $2::role)) e) WHERE id = $1 RETURNING *;
-
 -- name: DeleteUser :exec
 DELETE FROM users WHERE id = $1;

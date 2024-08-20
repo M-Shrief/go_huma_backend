@@ -16,3 +16,6 @@ ON CONFLICT("name")
 DO UPDATE SET 
     roles = (select array_agg(distinct e) from unnest(array_append(users.roles, $5::role)) e)
 RETURNING *;
+
+-- name: UpdateRole :one
+UPDATE users set roles =  (select array_agg(distinct e) from unnest(array_append(users.roles, $2::role)) e) WHERE id = $1 RETURNING *;

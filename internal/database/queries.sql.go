@@ -69,29 +69,6 @@ func (q *Queries) GetUserByName(ctx context.Context, name string) (GetUserByName
 	return i, err
 }
 
-const updateRole = `-- name: UpdateRole :one
-UPDATE users set roles =  (select array_agg(distinct e) from unnest(array_append(users.roles, $2::role)) e) WHERE id = $1 RETURNING id, name, password, roles, created_at, update_at
-`
-
-type UpdateRoleParams struct {
-	ID      pgtype.UUID `json:"id"`
-	Column2 Role        `json:"column_2"`
-}
-
-func (q *Queries) UpdateRole(ctx context.Context, arg UpdateRoleParams) (User, error) {
-	row := q.db.QueryRow(ctx, updateRole, arg.ID, arg.Column2)
-	var i User
-	err := row.Scan(
-		&i.ID,
-		&i.Name,
-		&i.Password,
-		&i.Roles,
-		&i.CreatedAt,
-		&i.UpdateAt,
-	)
-	return i, err
-}
-
 const updateUser = `-- name: UpdateUser :exec
 UPDATE users SET
   name = COALESCE(NULLIF($2::varchar, ''), name),
