@@ -48,4 +48,20 @@ func RegisterAPI(api huma.API) {
 		},
 		UpdateHandler,
 	)
+
+	huma.Register(
+		api,
+		huma.Operation{
+			OperationID: "delete-users",
+			Method:      http.MethodDelete,
+			Path:        "/users/me",
+			Summary:     "Delete User",
+			Description: "Delete user account.",
+			Tags:        []string{"Users"},
+			Security: []map[string][]string{
+				{"JWT-Auth": {}},
+			},
+		},
+		DeleteHandler,
+	)
 }
