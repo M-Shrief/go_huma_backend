@@ -13,7 +13,7 @@ func RegisterAPI(api huma.API) {
 			OperationID: "signup-users",
 			Method:      http.MethodPost,
 			Path:        "/users/signup",
-			Summary:     "Signup a User",
+			Summary:     "User Signup",
 			Description: "User signing up.",
 			Tags:        []string{"Users"},
 		},
@@ -39,7 +39,7 @@ func RegisterAPI(api huma.API) {
 			OperationID: "update-users",
 			Method:      http.MethodPut,
 			Path:        "/users/me",
-			Summary:     "Updated User",
+			Summary:     "Update User",
 			Description: "Update user's data.",
 			Tags:        []string{"Users"},
 			Security: []map[string][]string{
