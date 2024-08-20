@@ -6,13 +6,13 @@ SELECT id, phone,
     WHEN '{"DBA"}' <@ users.roles THEN 'Yes'
     ELSE 'No'
   END 
-  AS has_roles
+  AS has_role
 FROM users WHERE id = $1;
 
 -- name: CreateUserOrUpdateIfExists :one
 INSERT INTO users (name, password, roles) 
-VALUES ($1, $3, $4::roles[])
+VALUES ($1, $3, $4::role[])
 ON CONFLICT("name") 
 DO UPDATE SET 
-    roles = (select array_agg(distinct e) from unnest(array_append(users.roles, $5::roles)) e)
+    roles = (select array_agg(distinct e) from unnest(array_append(users.roles, $5::role)) e)
 RETURNING *;
