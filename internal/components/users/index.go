@@ -43,7 +43,7 @@ func RegisterAPI(api huma.API) {
 			Description: "Update user's data.",
 			Tags:        []string{"Users"},
 			Security: []map[string][]string{
-				{"JWT-Auth": {"JWT authentication"}},
+				{"bearer": {}},
 			},
 		},
 		UpdateHandler,
@@ -59,7 +59,7 @@ func RegisterAPI(api huma.API) {
 			Description: "Delete user account.",
 			Tags:        []string{"Users"},
 			Security: []map[string][]string{
-				{"JWT-Auth": {}},
+				{"bearer": {}},
 			},
 		},
 		DeleteHandler,

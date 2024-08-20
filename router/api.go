@@ -11,7 +11,16 @@ import (
 var API huma.API
 
 func InitAPI() huma.API {
-	API = humachi.New(R, huma.DefaultConfig("My API", "0.0.1"))
+	config := huma.DefaultConfig("My API", "0.0.1")
+	config.Components.SecuritySchemes = map[string]*huma.SecurityScheme{
+		"bearer": {
+			Type: "http",
+			Scheme: "bearer",
+			BearerFormat: "JWT",
+		},
+	}
+
+	API = humachi.New(R, config)
 
 	registerAPIs()
 
