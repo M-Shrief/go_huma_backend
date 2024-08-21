@@ -24,8 +24,9 @@ func LoadENV() {
 
 // General
 var (
-	HOST string
-	PORT string
+	APP_ENV string
+	HOST    string
+	PORT    string
 )
 
 // JWT
@@ -45,6 +46,7 @@ var (
 
 func assignValues() {
 	// General
+	APP_ENV = envs["APP_ENV"]
 	HOST = envs["HOST"]
 	PORT = envs["PORT"]
 
