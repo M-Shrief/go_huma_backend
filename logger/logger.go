@@ -11,11 +11,14 @@
 package logger
 
 import (
+	"bytes"
+	"fmt"
 	"go_huma_backend/internal/config"
 	"io"
 	"os"
 	"time"
 
+	"github.com/pkg/errors"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/pkgerrors"
 )
@@ -23,15 +26,29 @@ import (
 var log zerolog.Logger
 
 func Init() {
-	zerolog.ErrorStackMarshaler = pkgerrors.MarshalStack
+	zerolog.ErrorStackMarshaler = func(err error) interface{} {
+		return pkgerrors.MarshalStack(errors.WithStack(err))
+	}
 	zerolog.TimeFieldFormat = time.RFC3339Nano
 
 	var output io.Writer
 	var lvl zerolog.Level
 	if config.APP_ENV == "development" {
 		output = zerolog.ConsoleWriter{
-			Out:        os.Stdout,
-			TimeFormat: time.RFC3339,
+			Out:           os.Stdout,
+			TimeFormat:    time.RFC3339,
+			FieldsExclude: []string{"stack"},
+			FormatExtra: func(evt map[string]interface{}, buf *bytes.Buffer) error {
+				if stack, ok := evt["stack"]; ok {
+					buf.WriteString("\nstacktrace:\n")
+					for _, item := range stack.([]interface{}) {
+						stackItem := item.(map[string]interface{})
+						str := fmt.Sprintf("%v at %v:%v \n", stackItem["source"], stackItem["func"], stackItem["line"])
+						buf.WriteString(str)
+					}
+				}
+				return nil
+			},
 		}
 		lvl = zerolog.DebugLevel
 	} else {
