@@ -5,6 +5,8 @@ go 1.22.5
 require (
 	github.com/danielgtaylor/huma/v2 v2.21.0
 	github.com/go-chi/chi/v5 v5.1.0
+	github.com/go-chi/cors v1.2.1
+	github.com/go-chi/httprate v0.12.1
 	github.com/golang-jwt/jwt v3.2.2+incompatible
 	github.com/jackc/pgx/v5 v5.6.0
 	github.com/joho/godotenv v1.5.1
@@ -15,6 +17,7 @@ require (
 )
 
 require (
+	github.com/cespare/xxhash/v2 v2.3.0 // indirect
 	github.com/fxamacker/cbor/v2 v2.6.0 // indirect
 	github.com/jackc/pgpassfile v1.0.0 // indirect
 	github.com/jackc/pgservicefile v0.0.0-20221227161230-091c0ba34f0a // indirect
