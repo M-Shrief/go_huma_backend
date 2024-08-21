@@ -19,8 +19,8 @@ type SignupInput struct {
 }
 
 type SignupOutputBody struct {
-	User  database.User
-	Token string
+	User  UserOutput `json:"user" doc:"User's data"`
+	Token string     `json:"token" doc:"JWT token"`
 }
 
 type SignupOutput struct {
@@ -61,7 +61,10 @@ func SignupHandler(ctx context.Context, input *SignupInput) (*SignupOutput, erro
 	}
 
 	resp := &SignupOutput{
-		Body:   SignupOutputBody{user, token},
+		Body: SignupOutputBody{
+			UserOutput{database.UUIDToString(user.ID), user.Name, user.Roles},
+			token,
+		},
 		Status: http.StatusCreated,
 	}
 

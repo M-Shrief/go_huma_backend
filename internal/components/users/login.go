@@ -18,8 +18,8 @@ type LoginInput struct {
 }
 
 type LoginOutputBody struct {
-	User  database.GetUserByNameRow
-	Token string
+	User  UserOutput `json:"user" doc:"User's data"`
+	Token string     `json:"token" doc:"JWT token"`
 }
 
 type LoginOutput struct {
@@ -55,7 +55,10 @@ func LoginHandler(ctx context.Context, input *LoginInput) (*LoginOutput, error) 
 	}
 
 	resp := &LoginOutput{
-		Body:   LoginOutputBody{user, token},
+		Body: LoginOutputBody{
+			UserOutput{database.UUIDToString(user.ID), user.Name, user.Roles},
+			token,
+		},
 		Status: http.StatusAccepted,
 	}
 
