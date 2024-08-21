@@ -35,9 +35,6 @@ func UseMiddlewares() {
 	}))
 	// Adding rate limit by IP
 	R.Use(httprate.LimitByIP(1000, time.Minute))
-	// Setting `/` path to be a Heartbeat endpoint,
-	// so that we can check the server's health
-	R.Use(middleware.Heartbeat("/"))
 	// Recovering from Panic and returns 500 server error,
 	// and it restarts the server.
 	R.Use(middleware.Recoverer)
