@@ -12,7 +12,7 @@ import (
 )
 
 const createUser = `-- name: CreateUser :one
-INSERT INTO users (name,password, roles) VALUES ($1, $2, $3) RETURNING id, name, password, roles, created_at, update_at
+INSERT INTO users (name,password, roles) VALUES ($1, $2, $3) RETURNING id,name,roles
 `
 
 type CreateUserParams struct {
@@ -21,17 +21,16 @@ type CreateUserParams struct {
 	Roles    []Role `json:"roles"`
 }
 
-func (q *Queries) CreateUser(ctx context.Context, arg CreateUserParams) (User, error) {
+type CreateUserRow struct {
+	ID    pgtype.UUID `json:"id"`
+	Name  string      `json:"name"`
+	Roles []Role      `json:"roles"`
+}
+
+func (q *Queries) CreateUser(ctx context.Context, arg CreateUserParams) (CreateUserRow, error) {
 	row := q.db.QueryRow(ctx, createUser, arg.Name, arg.Password, arg.Roles)
-	var i User
-	err := row.Scan(
-		&i.ID,
-		&i.Name,
-		&i.Password,
-		&i.Roles,
-		&i.CreatedAt,
-		&i.UpdateAt,
-	)
+	var i CreateUserRow
+	err := row.Scan(&i.ID, &i.Name, &i.Roles)
 	return i, err
 }
 

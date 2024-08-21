@@ -1,6 +1,6 @@
 
 -- name: CreateUser :one
-INSERT INTO users (name,password, roles) VALUES ($1, $2, $3) RETURNING *;
+INSERT INTO users (name,password, roles) VALUES ($1, $2, $3) RETURNING id,name,roles;
 -- like INSERT INTO users (name, password, roles) VALUES ('nameasf', 'sfaasffas', ARRAY['DBA']::role[]) RETURNING *;
 
 -- name: GetUserByName :one
