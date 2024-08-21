@@ -20,6 +20,8 @@ func InitAPI() huma.API {
 			BearerFormat: "JWT",
 		},
 	}
+	// // disable the route by setting
+	// config.OpenAPIPath = ""
 
 	API = humachi.New(R, config)
 
