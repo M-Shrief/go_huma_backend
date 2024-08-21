@@ -26,7 +26,7 @@ func RegisterAPI(api huma.API) {
 			Summary:       "Server health check",
 			Description:   "Checking the server's health.",
 			Tags:          []string{"Heartbeat"},
-			DefaultStatus: 200,
+			DefaultStatus: http.StatusOK,
 		},
 		func(ctx context.Context, input *struct{}) (*HeartbeatOutput, error) {
 			return &HeartbeatOutput{http.StatusOK}, nil
@@ -42,7 +42,7 @@ func RegisterAPI(api huma.API) {
 			Summary:       "Ping the server",
 			Description:   "Ping the server to check it's health.",
 			Tags:          []string{"Heartbeat"},
-			DefaultStatus: 200,
+			DefaultStatus: http.StatusOK,
 		},
 		func(ctx context.Context, input *struct{}) (*PingOutput, error) {
 			return &PingOutput{"Pong", http.StatusOK}, nil
