@@ -1,11 +1,11 @@
 {
   "details": {
-    "path": "/users/me",
+    "path": "api/users/me",
     "method": "DELETE",
     "headers": [
       {
         "key": "Authorization",
-        "value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjQyNTgwMjAsImlhdCI6MTcyNDI1NDQyMCwicGVybWlzc2lvbnMiOlsiREJBOnJlYWQiLCJEQkE6d3JpdGUiXSwidXNlciI6eyJpZCI6IjM4ZTViOWIyLTBkNzYtNDEwMy04YzgzLTdkMWI3YWVkZjI0ZCIsIm5hbWUiOiJOYW1lXzEiLCJyb2xlcyI6WyJEQkEiXX19.ogFC9-6eO_QQDqtMbHMdeh3whDrIqb4pCFzcejp90pFm6EaNI2-P_7_Iirxqa9PJbhHvMwgbgYG3nb8METMBT_yihCJ6GwcRh6BwKcgXYxohJTz8Ly3HzQCfvlvU0OokFG9ph8F4LPCDhdyAOQttHIvyo1q4RqWMkg_zn70VaaoJSmcaSRiQzM3IpcjOWW8auF0DtnmPpIyM_Qm6JFus63SnapRivO8IHHdo1MffrGVIuMTsr8TyjYweMJxJCvZjPLHdyYDQcARPRr2kVDMA8THp_RH5eOa7OU4EhTSjjc63hXr81iF7D2aV-OUvMMkkB25MYd2Xzdnw6B9R1bA16Q"
+        "value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjQyNjEwNjAsImlhdCI6MTcyNDI1NzQ2MCwicGVybWlzc2lvbnMiOlsiREJBOnJlYWQiLCJEQkE6d3JpdGUiXSwidXNlciI6eyJpZCI6ImRiMzVhNjJiLThlZGItNGE1ZC1iMDI3LWE3OGQzNjYxNDliYSIsIm5hbWUiOiJOYW1lXzEiLCJyb2xlcyI6WyJEQkEiXX19.HhtnLYJP7YbA1P__q6co7T7_2u7E1bu4-hwMN0UmeC49CeQDC_s3MqrJIKcuCT1t9PYOuQIMaP10Zq4pNjrboatZn8YK062yKKwMv_Wnsm_4LA9S8y4Wyn1LP8YxJ-PagbfMlx6gzSv7UlurGl05l20D0WTYVzYQjHtAFY7VPX-ZUpSdqR5XB7XmjA4kUOAIoirdHegoxUPZk0lBK6VFDklmlV828S-2V76keqXBXyL9wlyq0mj8iFAOZnmnfVY80B-vpClS1S_lDcjq-1Rh0fJv3RYW0fjksMqvTX_l1r8n8XqN3B-zg_ZZS9-eJke_p1JuTWk-4iYbnG6P4QsnBA"
       }
     ],
     "pathParams": []

@@ -1,6 +1,6 @@
 {
   "details": {
-    "path": "/users/me",
+    "path": "api/users/me",
     "method": "PUT",
     "headers": [
       {

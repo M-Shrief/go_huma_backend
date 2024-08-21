@@ -1,6 +1,6 @@
 {
   "details": {
-    "path": "/users/login",
+    "path": "api/users/login",
     "method": "POST",
     "headers": [
       {

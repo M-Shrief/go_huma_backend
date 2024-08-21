@@ -1,6 +1,6 @@
 {
   "details": {
-    "path": "/users/signup",
+    "path": "api/users/signup",
     "method": "POST",
     "headers": [
       {
