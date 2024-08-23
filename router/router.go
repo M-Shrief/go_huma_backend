@@ -1,6 +1,7 @@
 package router
 
 import (
+	"go_huma_backend/logger"
 	"time"
 
 	"github.com/go-chi/chi/v5"
@@ -19,7 +20,7 @@ func NewRouter() *chi.Mux {
 // Use standard middlewares.
 func UseMiddlewares() {
 	// Logging requests details
-	R.Use(middleware.Logger)
+	R.Use(logger.Middleware)
 	// Specifying content type
 	R.Use(middleware.AllowContentType("application/json"))
 	// CORS config
