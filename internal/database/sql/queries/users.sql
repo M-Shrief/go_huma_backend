@@ -1,6 +1,6 @@
 
 -- name: CreateUser :one
-INSERT INTO users (name,password, roles) VALUES ($1, $2, $3) RETURNING id,name,roles;
+INSERT INTO users (name,password, roles) VALUES ($1, $2, $3) RETURNING *;
 -- like INSERT INTO users (name, password, roles) VALUES ('nameasf', 'sfaasffas', ARRAY['DBA']::role[]) RETURNING *;
 
 -- name: GetUserByName :one
@@ -11,7 +11,7 @@ UPDATE users SET
   name = COALESCE(NULLIF($2::varchar, ''), name),
   password = COALESCE(NULLIF($3::varchar, ''), password),
   roles = COALESCE(NULLIF($4::role[], ARRAY[]::role[]), roles),
-  update_at = CURRENT_TIMESTAMP
+  updated_at = CURRENT_TIMESTAMP
 WHERE id = $1;
 
 -- name: DeleteUser :exec
